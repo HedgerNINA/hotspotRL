@@ -48,7 +48,7 @@ INDEX:
   2.9 Land use
   
 
-3. Biological datasets
+3. Biophysical datasets
 
   3.1 Rainfall
   
