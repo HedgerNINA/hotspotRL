@@ -1,0 +1,126 @@
+#Calculate distance to anthropogenic variables
+
+#Import data
+InWD <- "R:/Prosjekter/15801000_geografisk_utbredelse_av_trua_arter_i_norge/GIS/Anthropogenic_variables"
+setwd("R:/Prosjekter/15801000_geografisk_utbredelse_av_trua_arter_i_norge/GIS/Anthropogenic_variables")
+
+#Create 100x100m raster template
+ssb1km <- raster("./ssb1km_raster.tif")
+template <- raster(extent(ssb1km))
+res(template)<- c(100,100)
+port.v <- readOGR(InWD, layer="ssn_ispshavneanlegg")
+crs(template) <- crs(port.v)
+
+#Create 1x1km raster template
+ssb1km <- raster("./ssb1km_raster.tif")
+template <- raster(extent(ssb1km))
+res(template)<- c(1000,1000)
+crs(template) <- crs(port.v)
+
+# HERBARIUM
+#herbarium.v <- readOGR(InWD, layer="Herbaria_towns")
+#Rasterize vector
+#herbarium.r <- rasterize(herbarium.v, template, field=1)
+#Calculate distance
+herbarium.dist <- distance(herbarium.r)
+plot(herbarium.dist)
+# write raster
+writeRaster(herbarium.dist, "herbarium_distance", format = "GTiff", overwrite = TRUE)
+writeRaster(herbarium.r, "herbarium_raster_100m", format = "GTiff", overwrite = TRUE)
+rm(herbarium.v)
+rm(herbarium.r)
+rm(herbarium.dist)
+gc()
+
+
+
+# RAILWAY
+railway.v <- readOGR(InWD, layer="N50_bane")
+#Rasterize vector
+railway.r <- rasterize(railway.v, template, field=1)
+#Calculate distance
+railway.dist <- distance(railway.r)
+plot(railway.dist)
+# write raster
+writeRaster(railway.dist, "railway_distance", format = "GTiff", overwrite = TRUE)
+writeRaster(railway.r, "railway_raster_100m", format = "GTiff", overwrite = TRUE)
+# remove object
+rm(railway.v)
+rm(railway.r)
+rm(railway.dist)
+gc()
+
+
+
+# RIVER
+#river.v <- readOGR(InWD, layer="Elv_Elvenett")
+#Rasterize vector
+#river.r <- rasterize(river.v, template, field=1)
+river.r <- raster("./river_raster_100m.tif") #If data is already in raster format then run this line instead of river.v
+#Calculate distance
+river.dist <- distance(river.r)
+plot(river.dist)
+# write raster
+writeRaster(river.dist, "river_distance", format = "GTiff", overwrite = TRUE)
+#writeRaster(river.r, "river_raster_100m", format = "GTiff", overwrite = TRUE)
+# remove object
+rm(river.v)
+rm(river.r)
+rm(river.dist)
+gc()
+
+
+
+# SETTLEMENT
+settlement.v <- readOGR(InWD, layer="Tettsted2017")
+#Rasterize vector
+settlement.r <- rasterize(settlement.v, template, field=1)
+#Calculate distance
+settlement.dist <- distance(settlement.r)
+plot(settlement.dist)
+# write raster
+writeRaster(settlement.dist, "settlement_distance", format = "GTiff", overwrite = TRUE)
+writeRaster(settlement.r, "settlement_raster_100m", format = "GTiff", overwrite = TRUE)
+# remove object
+rm(settlement.v)
+rm(settlement.r)
+rm(settlement.dist)
+gc()
+
+
+
+# ROAD
+#road.v <- readOGR(InWD, layer="Elveg_Norge")
+#Rasterize vector
+#road.r <- rasterize(road.v, template, field=1)
+road.r <- raster("./road_raster_100m.tif") #If data is already in raster format then run this line instead of road.v
+#Calculate distance
+road.dist <- distance(road.r)
+plot(road.dist)
+# write raster
+writeRaster(road.dist, "road_distance", format = "GTiff", overwrite = TRUE)
+#writeRaster(road.r, "road_raster_100m, format = "GTiff", overwrite = TRUE)
+# remove object
+rm(road.v)
+rm(road.r)
+rm(road.dist)
+gc()
+
+
+
+# PORT
+port.v <- readOGR(InWD, layer="ssn_ispshavneanlegg")
+#Rasterize vector
+port.r <- rasterize(port.v, template, field=1)
+#port.r <- raster("./port_raster_100m.tif") #If data is already in raster format then run this line instead of port.v
+#Calculate distance
+port.dist <- distance(port.r)
+plot(port.dist)
+# write raster
+writeRaster(port.dist, "port_distance", format = "GTiff", overwrite = TRUE)
+writeRaster(port.r, "port_raster_100m_r", format = "GTiff", overwrite = TRUE)
+# remove object
+rm(port.v)
+rm(port.r)
+rm(port.dist)
+gc()
