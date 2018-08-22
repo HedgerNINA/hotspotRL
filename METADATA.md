@@ -1,41 +1,71 @@
 # hotspotRL
 PROJECT DETAILS:
+
 Project title: Geografisk utbredelse av trua arter i norge
+
 Project leader: Siri Lee Olsen
+
 Project owner: NINA
+
 Project lifespan: June-December 2018
+
 Project funding: Miljødirektoratet
 
+
 OVERVIEW:
-This document provides a description of the data collection and preparation. The method is detailed in the additional scripts (written in R). All data is projected as EPSG 25833 (ETRS 89 UTM zone 33N). This was the first step
+This document provides a description of the data collection and preparation. The method is detailed in the additional scripts (written in R). All data is projected as EPSG 25833 (ETRS 89 UTM zone 33N).
 
 INDEX:
 1. Basic variables
+
   1.1 GBIF red list species
+  
   1.2 SSB grids
+  
   1.3 Protected areas
+  
   1.4 Water
+  
 
 2. Anthropogenic datasets
+
   2.1 Distance to road
+  
   2.2 Distance to railway
+  
   2.3 Distance to port
+  
   2.4 Distance to river
+  
   2.5 Distance to settlement
+  
   2.6 Distance to herbarium
+  
   2.7 Population density
+  
   2.8 Income
+  
   2.9 Land use
+  
 
 3. Biological datasets
+
   3.1 Rainfall
+  
   3.2 Temperature
+  
   3.3 Frost/snow
+  
   3.4 Date of spring arrival
+  
   3.5 Height above sea level
+  
   3.6 Lime content in soil
+  
   3.7 Solar radiation
+  
   3.8 NDVI
+  
   
   
   SECTION 1:
@@ -56,7 +86,8 @@ INDEX:
  
  1.4 Water
  
- - Data source: 
+ - Data source:
+ - Data preparation:
  
  
  SECTION 2:
