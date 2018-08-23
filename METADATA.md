@@ -134,7 +134,7 @@ INDEX:
   
   2.6 Distance to herbarium
   
-  - Data source: The exact location of herbariums in Norway is not available as spatial data so the cities where universities with the known herbariums are were used as a proxy. These were Oslo, Bergen, Trondheim, Tromsø and Kristiansand. The loaction of the cities was derived from the settlements dataset available from SSB.
+  - Data source: The exact location of herbariums in Norway is not available as spatial data so the cities where universities with the known herbariums are were used as a proxy. These were Oslo, Bergen, Trondheim, Tromsø and Kristiansand. The location of the cities was derived from the settlements dataset available from SSB.
   - Data preparation: The herbaria shapefile was converted to raster format and the distance function run in R studio.
   
   
@@ -146,7 +146,7 @@ INDEX:
   
   2.8 Income
   
-  - Data source: We have been unable to source this data in a spatial data format.
+  - Data source: Income data is not readily accessible and was therefore omitted from this project.
   
   
   2.9 Land use
@@ -175,6 +175,7 @@ INDEX:
   - Data source: Global snowPack data (Dietz et al. 2015, Remote Sensing Letters 6:844-853) had been obtained by Jane Jepsen (NINA) from the DLR with a NINA license agreement (R:\Prosjekter\15801000_geografisk_utbredelse_av_trua_arter_i_norge\GIS\Biophysical_variables\Inputs). The dataset included the mean snow coverage duration (days) which was used in this project.
   - Data preparation: The mean snow coverage duration (days) was extracted for the 1km and 5km SSB grids in R studio.
   
+  
   3.4 Date of spring arrival
   
  - Data source: The onset of spring was calculated by Torkild Tveraa and Jens Åström and was already available on the NINA server. The dataset is based on MODIS NDVI data. 
@@ -195,7 +196,7 @@ INDEX:
   
   3.7 Solar radiation
   
-  - Data source: Solar radiation data was downloaded from WorlClim (http://worldclim.org/version2) at 30 seconds resolution (~1km2). The data are monthly averages from 1970-2000.
+  - Data source: Solar radiation data was downloaded from WorldClim (http://worldclim.org/version2) at 30 seconds resolution (~1km2). The data are monthly averages from 1970-2000.
   - Data preparation: The monthly solar radiation was extracted for the 1km SSB grid in R studio. The annual mean was calculated and extracted to the 5km grid as well.
   
   
