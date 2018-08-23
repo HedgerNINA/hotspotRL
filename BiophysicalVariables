@@ -6,28 +6,28 @@ library(raster)
 library(rgdal)
 
 #Import data
-setWD <- "R:/Prosjekter/15801000_geografisk_utbredelse_av_trua_arter_i_norge/GIS/Biophysical_variables"
-inWD <- "R:/Prosjekter/15801000_geografisk_utbredelse_av_trua_arter_i_norge/GIS/Biophysical_variables"
+setwd("R:/Prosjekter/15801000_geografisk_utbredelse_av_trua_arter_i_norge/GIS/Biophysical_variables")
+inWD <- ("R:/Prosjekter/15801000_geografisk_utbredelse_av_trua_arter_i_norge/GIS/Biophysical_variables")
 
 ssb1km <- readOGR(inWD, layer="ssb1km")
 ssb5km <- readOGR(inWD, layer="ssb5km")
 
 #Create raster template for rasterization
 r1km <- raster(extent(ssb1km))
-res(r)<- c(1000,1000)
-crs(r) <- crs(ssb1km)
+res(r1km)<- c(1000,1000)
+crs(r1km) <- crs(ssb1km)
 
 r5km <- raster(extent(ssb5km))
-res(r)<- c(5000,5000)
-crs(r) <- crs(ssb5km)
+res(r5km)<- c(5000,5000)
+crs(r5km) <- crs(ssb5km)
 
 
 ###RAINFALL (already available for 1km grid)
-rain <- raster("rastPrecipSum1km.tif")
+rain <- raster("precipitation_1km.tif")
 #5km grid
 rain5km <- extract(rain, ssb5km, method=simple, fun=sum, na.rm=T, sp=T)
-rain5km.r <- rasterize(rain5km, r5km, field="XXX")
-writeRaster(rain5km.r, "rainfall_5km", format = "GTiff", overwrite = TRUE)
+rain5km.r <- rasterize(rain5km, r5km, field="precipitation_1km")
+writeRaster(rain5km.r, "precipitation_5km", format = "GTiff", overwrite = TRUE)
 rm(rain5km)
 rm(rain5km.r)
 rm(rain)
@@ -35,10 +35,10 @@ gc()
 
 
 ###TEMPERATURE (already available for 1km grid)
-temp <- raster("rastTempAverage1km.tif")
+temp <- raster("temperature_1km.tif")
 #5km grid
 temp5km <- extract(temp, ssb5km, method=simple, fun=mean, na.rm=T, sp=T)
-temp5km.r <- rasterize(temp5km, r5km, field="XXX")
+temp5km.r <- rasterize(temp5km, r5km, field="temperature_1km")
 writeRaster(temp5km.r, "temperature_5km", format = "GTiff", overwrite = TRUE)
 rm(temp5km)
 rm(temp5km.r)
@@ -46,10 +46,10 @@ rm(temp)
 gc()
 
 ###SNOW
-snow <- raster("XXX.tif")
+snow <- raster("Dietz_meanSnowCoverDuration_2000-2014.tif")
 #1km grid
 snow1km <- extract(snow, ssb1km, method=simple, fun=mean, na.rm=T, sp=T)
-snow1km.r <- rasterize(snow1km, r1km, field="XXX")
+snow1km.r <- rasterize(snow1km, r1km, field="Dietz_meanSnowCoverDuration_2000-2014")
 writeRaster(snow1km.r, "snow_1km", format = "GTiff", overwrite = TRUE)
 rm(snow1km)
 rm(snow1km.r)
@@ -65,11 +65,11 @@ gc()
 
 
 ###DATE OF SPRING ARRIVAL (already available for 1km grid)
-spring <- raster("rastOnsetOfSpring1km.tif")
+spring <- raster("onsetOfSpring_1km.tif")
 #5km grid
 spring5km <- extract(spring, ssb5km, method=simple, fun=mean, na.rm=T, sp=T)
-spring5km.r <- rasterize(spring5km, r5km, field="XXX")
-writeRaster(spring5km.r, "springOnset_5km", format = "GTiff", overwrite = TRUE)
+spring5km.r <- rasterize(spring5km, r5km, field="onsetOfSpring_1km")
+writeRaster(spring5km.r, "onsetOfSpring_5km.tif", format = "GTiff", overwrite = TRUE)
 rm(spring5km)
 rm(spring5km.r)
 rm(spring)
@@ -79,14 +79,14 @@ gc()
 altitude <- raster("dem100m.tif")
 #1km grid
 altitude1km <- extract(altitude, ssb1km, method=simple, fun=mean, na.rm=T, sp=T)
-altitude1km.r <- rasterize(altitude1km, r1km, field="XXX")
+altitude1km.r <- rasterize(altitude1km, r1km, field="dem100m")
 writeRaster(altitude1km.r, "altitude_1km", format = "GTiff", overwrite = TRUE)
 rm(altitude1km)
 rm(altitude1km.r)
 
 #5km grid
 altitude5km <- extract(altitude, ssb5km, method=simple, fun=mean, na.rm=T, sp=T)
-altitude5km.r <- rasterize(altitude5km, r5km, field="XXX")
+altitude5km.r <- rasterize(altitude5km, r5km, field="dem100m")
 writeRaster(altitude5km.r, "altitude_5km", format = "GTiff", overwrite = TRUE)
 rm(altitude5km)
 rm(altitude5km.r)
@@ -94,29 +94,22 @@ rm(altitude)
 gc()
 
 ###LIME CONTENT IN SOIL (already available for 1km grid)
-lime <- raster("rastCalciferous1km.tif")
+lime <- raster("calciferous_1km.tif")
 #5km grid
 lime5km <- extract(lime, ssb5km, method=simple, fun=mode, na.rm=T, sp=T)
-lime5km.r <- rasterize(lime5km, r5km, field="XXX")
-writeRaster(lime5km.r, "calciferousSoil_5km", format = "GTiff", overwrite = TRUE)
+lime5km.r <- rasterize(lime5km, r5km, field="calciferous_1km")
+writeRaster(lime5km.r, "calciferous_5km.tif", format = "GTiff", overwrite = TRUE)
 rm(lime5km)
 rm(lime5km.r)
 rm(lime)
 gc()
 
 
-###SOLAR RADIATION
-solar <- raster("XXX.tif")
-#1km grid
-solar1km <- extract(solar, ssb1km, method=simple, fun=mean, na.rm=T, sp=T)
-solar1km.r <- rasterize(solar1km, r1km, field="XXX")
-writeRaster(solar1km.r, "solarRadiation_1km", format = "GTiff", overwrite = TRUE)
-rm(solar1km)
-rm(solar1km.r)
-
+###SOLAR RADIATION (already available for 1km grid)
+solar <- raster("solarRadiation_1km.tif")
 #5km grid
 solar5km <- extract(solar, ssb5km, method=simple, fun=mean, na.rm=T, sp=T)
-solar5km.r <- rasterize(solar5km, r5km, field="XXX")
+solar5km.r <- rasterize(solar5km, r5km, field="solarRadiation_1km")
 writeRaster(solar5km.r, "solarRadiation_5km", format = "GTiff", overwrite = TRUE)
 rm(solar5km)
 rm(solar5km.r)
@@ -124,19 +117,13 @@ rm(solar)
 gc()
 
 ###NDVI
-ndvi <- raster("XXX.tif")
-#1km grid
-ndvi1km <- extract(ndvi, ssb1km, method=simple, fun=mean, na.rm=T, sp=T)
-ndvi1km.r <- rasterize(ndvi1km, r1km, field="XXX")
-writeRaster(ndvi1km.r, "ndvi_1km", format = "GTiff", overwrite = TRUE)
-rm(ndvi1km)
-rm(ndvi1km.r)
-
+ndvi <- raster("NDVI_1km.tif")
 #5km grid
 ndvi5km <- extract(ndvi, ssb5km, method=simple, fun=mean, na.rm=T, sp=T)
-ndvi5km.r <- rasterize(ndvi5km, r5km, field="XXX")
-writeRaster(ndvi5km.r, "ndvi_5km", format = "GTiff", overwrite = TRUE)
+ndvi5km.r <- rasterize(ndvi5km, r5km, field="NDVI_1km")
+writeRaster(ndvi5km.r, "NDVI_5km", format = "GTiff", overwrite = TRUE)
 rm(ndvi5km)
 rm(ndvi5km.r)
 rm(ndvi)
 gc()
+
