@@ -95,8 +95,8 @@ INDEX:
  
  1.4 Water
  
- - Data source:
- - Data preparation:
+ - Data source: Three additional files were supplied to mask water bodies and the sea. These were lakes and rivers (original data can be downloaded from NVE https://nedlasting.nve.no/gis/) and the administrative boundaries of Norway.
+ - Data preparation: No preparation was necessary
  
  
  
