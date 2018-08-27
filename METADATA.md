@@ -202,6 +202,6 @@ INDEX:
   
   3.8 NDVI
   
-  - Data source: MODIS NDVI data was downloaded from LP DAAC (https://lpdaac.usgs.gov/tools/data_access/daac2disk_web) for Norway (tiles h18 v1-3 and h19 v1-2) for 2017. MOD13A3 data were selected which are monthly composite vegetation indices at 1km resolution. 
-  - Data preparation: An annual average NDVI value was calculated and extracted to the 1km and 5km SSB grids in R studio. 
+  - Data source: MODIS NDVI data was downloaded from LP DAAC (https://lpdaac.usgs.gov/tools/data_access/daac2disk_web) for Norway (tiles h18 v1-3 and h19 v1-2) for 2017. MOD13A3 data were selected which are monthly composite vegetation indices at 1km resolution (https://vip.arizona.edu/documents/MODIS/MODIS_VI_UsersGuide_June_2015_C6.pdf). 
+  - Data preparation: An annual average NDVI value was calculated and extracted to the 1km and 5km SSB grids in R studio. Data values were rescaled using a scale factor of 0.0001 as is specified in the MODIS user manual. 
   
