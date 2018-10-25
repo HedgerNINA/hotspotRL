@@ -23,7 +23,7 @@ This document provides a description of the data collection and preparation. The
 INDEX:
 1. Basic variables
 
-        1.1 GBIF red list species
+        1.1 GBIF plant species observations
   
         1.2 SSB grids
   
@@ -75,10 +75,10 @@ INDEX:
   
   
   SECTION 1:
-  1.1 GBIF red list species
+  1.1 GBIF plant species observations
   
-  - Data source: GBIF data was downloaded from Artsdatabanken (https://artsdatabanken.no/Pages/233748) on 18 July 2018 as shapefiles.
-  - Data preparation: As we were only interested in red listed species, only the CR (critically endangered), EN (endangered) and DD     (data deficient) datasets were included (no data was available for VU and NT categories). Data were filtered to only include plants (kingdom = plantae) that had been collected in the last 10 years (identification year >= 2008). A total of 2079 observations fit these criteria.
+  - Data source: GBIF data for red list plant species was downloaded from Artsdatabanken (https://artsdatabanken.no/Pages/233748) on 18 July 2018 as shapefiles. General species observations were downloaded directly from GBIF (https://www.gbif.org/occurrence/search?country=NO&has_coordinate=true&has_geospatial_issue=false&taxon_key=6&year=1998,2018 ) for the period 1998-2018. A list of 'Ansvarsarter' were obtained internally for 2015. 
+  - Data preparation: For the red listed species, the CR (critically endangered), EN (endangered), VU (vulnerable), NT (near threatened) and DD (data deficient) datasets were joined into a single shapefile. Data were filtered to only include plants (kingdom = plantae) that had been collected in the last 20 years (identification year >= 1998). Ansvarsarter were joined to this RL dataset using the species name as the identifier. Spatial observations of the species on the ansvarsarter list were extracted. The general species dataset was an especially large file to work with (more than 3 million observations). The data were filtered to only include observations for the Norwegian mainland with an accuracy of <100m. 
   
   
   1.2 SSB grids
